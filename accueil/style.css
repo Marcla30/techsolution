@@ -1,0 +1,174 @@
+* {
+    background-color: #333;
+    color: white;
+}
+
+header {
+    background-color: #333;
+    padding: 10px 0;
+    font-family: Arial, sans-serif;
+}
+
+header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+header ul li {
+    position: relative;
+    margin: 0 20px;
+}
+
+header ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+header ul li a:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+/* Style du sous-menu */
+.sous-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    background-color: #444;
+    padding: 0;
+    min-width: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.sous-menu li {
+    margin: 0;
+}
+
+.sous-menu li a {
+    padding: 10px 15px;
+    display: block;
+    color: white;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.sous-menu li a:hover {
+    background-color: #666;
+}
+
+header ul li:hover .sous-menu {
+    display: block;
+}
+
+h1 {
+    text-align: left;
+    position: relative;
+    padding-bottom: 5px;
+    font: 24px/1 "Fira Sans", sans-serif;
+}
+
+h1::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    left: 0;
+    height: 5px;
+    border-radius: 2px;
+    background: linear-gradient(111.3deg, #720d82 9.6%, #e341ef 93.6%);
+}
+
+
+.illustration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+img {
+    max-width: 85%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border-radius: 8px;  /* Coins légèrement arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Amélioration du titre */
+h1 {
+    text-align: center;
+    color: #e341ef;
+    margin: 20px 0;
+}
+
+/* Style pour les articles */
+.article {
+    background-color: #444;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.article h5 a {
+    color: #e341ef;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: inline-block;
+    background-color: #444;
+}
+
+.article h5 a:hover {
+    color: #720d82;
+}
+
+.article h5 {
+    background-color: #444444;
+
+}
+/* Style pour la section services */
+.services {
+    background-color: #333;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 8px;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.services h3 {
+    color: #e341ef;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.services p {
+    font-size: 16px;
+    color: #ccc;
+}
+
+/* Style du lien de navigation active */
+header ul li a.active {
+    background-color: #e341ef;
+    color: #333;
+    border-radius: 5px;
+}
+

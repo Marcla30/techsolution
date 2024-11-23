@@ -1,0 +1,57 @@
+/* main div du form */
+.formcontainer {
+    padding-top: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form input,
+form textarea {
+    width: 80%;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+.adresse {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.carteframe {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* Input hover/focus effect */
+form input[type="email"]:focus,
+form input[type="text"]:focus,
+form input[type="password"]:focus {
+    border: 1px solid #2575fc;
+    outline: none;
+}
+
+form textarea:focus {
+    border: 1px solid #e65c07;
+    outline: none;
+}
+
+form input[type="submit"] {
+    background: #2575fc;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background: #6a11cb;
+}
+
