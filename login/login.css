@@ -30,9 +30,7 @@ form textarea {
 }
 
 /* Input hover/focus effect */
-form input[type="email"]:focus,
-form input[type="text"]:focus,
-form input[type="password"]:focus {
+form input:focus {
     border: 1px solid #2575fc;
     outline: none;
 }
@@ -53,5 +51,13 @@ form input[type="submit"] {
 
 form input[type="submit"]:hover {
     background: #6a11cb;
+}
+
+form label {
+    display: block;
+    font-weight: bold;
+    color: #2575fc;
+    text-align: left;
+    margin: 5px auto 3px;
 }
 

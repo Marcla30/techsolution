@@ -171,3 +171,29 @@ header ul li a.active {
     border-radius: 5px;
 }
 
+button {
+    background: #2575fc;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    flex: 1; /* Les boutons prennent une proportion égale */
+    margin: 0 10px; /* Ajoute un espacement horizontal entre les boutons */
+    padding: 10px 20px; /* Taille des boutons */
+    border-radius: 5px; /* Coins arrondis pour un design moderne */
+}
+
+button:hover {
+    background: #6a11cb;
+}
+
+a.hidden {
+    color: transparent;
+    background: none;
+}
+
+
+
+
+
