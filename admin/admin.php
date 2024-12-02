@@ -24,7 +24,9 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Define the SQL query
-    $sql = "SELECT * FROM articles";
+//    $sql = "SELECT * FROM articles";
+    $sql = "SELECT * FROM articles ORDER BY idArticle DESC";
+
 
     // Execute the query
     $stmt = $conn->query($sql);
@@ -36,52 +38,80 @@ try {
     // Handle connection errors
     echo "Error: " . $e->getMessage();
 }
+
+if (isset($_GET['delete'])) {
+    if (deleteArticle($_GET['delete'])) {
+        header("Location: ../../techsolution/admin/admin.php");
+        exit();
+    }
+}
+
 ?>
 <h1>Pannel administratif</h1>
-<p>Connecté en tant que <?=$nom?></p>
-<p>Dernière connexion le: $date</p>
-<button>Profil</button>
-<a href="../../techsolution/login/login.php?stop=1"">
-    <button>Déconnexion</button>
-</a>
-<hr>
-<h2>Article récent</h2>
+<div class="article">
+    <h5>Connecté en tant que: <?=$nom?></h5>
+    <h5>Dernière connexion le: $date</h5>
+        <div class="buttoncontainer">
+            <button>Profil</button>
+            <button onclick="window.location.href='../../techsolution/login/login.php?stop=1'">Déconnexion</button>
+            <!--<a href="../../techsolution/login/login.php?stop=1"">-->
+            <!--    <button>Déconnexion</button>-->
+            <!--</a>-->
+        </div>
+</div>
+<h1>Article récent</h1>
+
+<button onclick="window.location.href='../../techsolution/adminArticle/editarticle.php?edit='">Nouvel article</button>
 
 <?php
 // Boucle pour afficher les articles
 foreach ($row as $article) {
     echo '<div class="article">';
-    echo '<img src="img/article.png" alt="template_article">';
+    echo '<div class="img-container">';
+    echo '<img src="' . $article['imgArticle'] . '"img/article.png" alt="template_article">';
+    echo '</div>';
     echo '<h5><a>' . htmlspecialchars($article['titreArticle']) . '</a></h5>';
     echo '<h5><a href="tag1.html">' . htmlspecialchars($article['tagArticle']) . '</a></h5>';
     echo htmlspecialchars(substr($article['contentArticle'], 0, 200)).'...';
+    echo '<div class="buttoncontainer">';
     echo '<button>Afficher</button>';
-    echo '<a class="hidden" href="../../techsolution/adminArticle/editarticle.php?edit=' .
+    echo '<button onclick="window.location.href=\'../../techsolution/adminArticle/editarticle.php?edit=' .
         htmlspecialchars($article['idArticle']) .
-        '"> <button>Modifier</button></a>';
-    echo '<button>Supprimer</button>';
+        '\'">Modifier</button>';
+    echo '<button onclick="window.location.href=\'../../techsolution/admin/admin.php?delete=' .
+        htmlspecialchars($article['idArticle']) .
+        '\'">Supprimer</button>';
+    echo '</div>';
     echo '</div>';
 }
 ?>
 
-<div class="article">
-  <img src="img/article.png" alt="template_article">
-  <h5><a href="#">Tag 2</a></h5>
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci blanditiis,
-  dicta dolores doloribus ex explicabo necessitatibus obcaecati odio officiis
-  praesentium quia, rerum sit tenetur. Doloremque ea maiores numquam praesentium repellat.
-  <button>Modifier</button>
-  <button>Supprimer</button>
-</div>
-<div class="article">
-  <img src="img/article.png" alt="template_article">
-  <h5><a href="#">Tag 3</a></h5>
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci blanditiis,
-  dicta dolores doloribs ex explicabo necessitatibus obcaecati odio officiis
-  praesentium quia, rerum sit tenetur. Doloremque ea maiores numquam praesentium repellat.
-  <button>Modifier</button>
-  <button>Supprimer</button>
-</div>
+<!--<div class="article">-->
+<!--  <img src="img/article.png" alt="template_article">-->
+<!--  <h5><a href="#">Tag 2</a></h5>-->
+<!--  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci blanditiis,-->
+<!--  dicta dolores doloribus ex explicabo necessitatibus obcaecati odio officiis-->
+<!--  praesentium quia, rerum sit tenetur. Doloremque ea maiores numquam praesentium repellat.-->
+<!--    <div class="buttoncontainer">-->
+<!--  <button>Afficher</button>-->
+<!--  <button>Modifier</button>-->
+<!--  <button>Supprimer</button>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div class="article">-->
+<!--  <img src="img/article.png" alt="template_article">-->
+<!--  <h5><a href="#">Tag 3</a></h5>-->
+<!--  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci blanditiis,-->
+<!--  dicta dolores doloribs ex explicabo necessitatibus obcaecati odio officiis-->
+<!--  praesentium quia, rerum sit tenetur. Doloremque ea maiores numquam praesentium repellat.-->
+<!--    <div class="buttoncontainer">-->
+<!--        <button>Afficher</button>-->
+<!--        <button>Modifier</button>-->
+<!--        <button>Supprimer</button>-->
+<!--    </div>-->
+<!--</div>-->
+
+
 <a href="adminArticle/adminarticles.php"><button>Voir tout</button></a>
 <h2>Derniers message reçu</h2>
 <hr>

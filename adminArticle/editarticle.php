@@ -49,36 +49,75 @@ try {
 
 
 <?php
-if (isset($_GET['edit'])) {
-    $article = $row[$_GET['edit']-1];
+var_dump($_GET['edit']);
+if (isset($_GET['edit']) && $_GET['edit'] != "")  {
+    $id = intval($_GET['edit']);
+    $article = getArticle($id);
     echo '<div class="formcontainer">';
     echo '<form action="editarticle.php" method="POST">';
+    echo '<input type="hidden" name="editMode" value="1">';
     echo '<label for="titreArticle">Titre de l\'article :</label>';
     echo '<input type="text" id="titreArticle" name="titreArticle" placeholder="Titre de l\'article" value="' . htmlspecialchars($article['titreArticle']) . '" required>';
+    echo '<label for="imgArticle">Image de l\'article :</label>';
+    echo '<input type="text" id="imgArticle" name="imgArticle" placeholder="Image de l\'article" value="' . htmlspecialchars($article['imgArticle']) . '" required>';
     echo '<label for="tagArticle">Tag de l\'article :</label>';
     echo '<input type="text" id="tagArticle" name="tagArticle" placeholder="Tag de l\'article" value="' . htmlspecialchars($article['tagArticle']) . '" required>';
     echo '<label for="contentArticle">Contenu de l\'article :</label>';
     echo '<textarea id="contentArticle" name="contentArticle" rows="20" placeholder="Contenu de l\'article..." required>' . htmlspecialchars($article['contentArticle']) . '</textarea>';
-    echo '<input type="hidden" name="article_id" value="' . htmlspecialchars($article['idArticle']) . '">';
+    echo '<input type="hidden" name="idArticle" value="' . htmlspecialchars($article['idArticle']) . '">';
     echo '<input type="submit" value="Modifier l\'article">';
     echo '</form>';
     echo '</div>';
 
+}else {
+    echo '<div class="formcontainer">';
+    echo '<form action="editarticle.php" method="POST">';
+    echo '<label for="titreArticle">Titre de l\'article :</label>';
+    echo '<input type="text" id="titreArticle" name="titreArticle" placeholder="Titre de l\'article" required>';
+    echo '<label for="imgArticle">Image de l\'article :</label>';
+    echo '<input type="text" id="imgArticle" name="imgArticle" placeholder="Image de l\'article" required>';
+    echo '<label for="tagArticle">Tag de l\'article :</label>';
+    echo '<input type="text" id="tagArticle" name="tagArticle" placeholder="Tag de l\'article" required>';
+    echo '<label for="contentArticle">Contenu de l\'article :</label>';
+    echo '<textarea id="contentArticle" name="contentArticle" rows="20" placeholder="Contenu de l\'article..." required></textarea>';
+    echo '<input type="hidden" name="idArticle">';
+    echo '<input type="submit" value="Créer l\'article">';
+    echo '</form>';
+    echo '</div>';
 }
 
-if (isset($_POST['article_id'], $_POST['titreArticle'], $_POST['tagArticle'], $_POST['contentArticle'])) {
-    // Récupérer les données du formulaire
-    $id = intval($_POST['article_id']);
-    $titre = htmlspecialchars($_POST['titreArticle']);
-    $tag = htmlspecialchars($_POST['tagArticle']);
-    $content = htmlspecialchars($_POST['contentArticle']);
+if (isset($_POST['editMode']) && $_POST['editMode'] == "1") {
+    var_dump($_POST);
+    if (isset($_POST['idArticle'], $_POST['titreArticle'],$_POST['imgArticle'], $_POST['tagArticle'], $_POST['contentArticle'])) {
+        $id = intval($_POST['idArticle']);
+        $titre = $_POST['titreArticle'];
+        $img = $_POST['imgArticle'];
+        $tag = $_POST['tagArticle'];
+        $content = $_POST['contentArticle'];
 
-    // Appeler la fonction pour mettre à jour l'article
-    if (updateArticle($id, $titre, $tag, $content)) {
-        header("Location: ../../techsolution/admin/admin.php");
-        exit();
-    } else {
-        echo "Erreur lors de la mise à jour de l'article.";
+        var_dump($content);
+        if (updateArticle($id, $titre, $img, $tag, $content)) {
+            header("Location: ../../techsolution/admin/admin.php");
+            exit();
+        } else {
+            echo "Erreur lors de la mise à jour de l'article.";
+        }
+    }
+} else {
+    if (isset($_POST['titreArticle'], $_POST['imgArticle'], $_POST['tagArticle'], $_POST['contentArticle'])) {
+        $id = $_POST['titreArticle'];
+        $titre = $_POST['imgArticle'];
+        $tag = $_POST['tagArticle'];
+        $content = $_POST['contentArticle'];
+
+        var_dump($content);
+        // Appeler la fonction pour mettre à jour l'article
+        if (createArticle($id, $titre, $tag, $content)) {
+            header("Location: ../../techsolution/admin/admin.php");
+            exit();
+        } else {
+            echo "Erreur lors de la mise à jour de l'article.";
+        }
     }
 }
 

@@ -1,3 +1,6 @@
+<?php
+require_once "../cli/functions.php";
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -17,6 +20,15 @@
             </ul>
         </li>
         <li><a href="../../../techsolution/contact/contact.php">Contact</a></li>
-        <li><a href="../../../techsolution/login/login.php">Connexion</a></li>
+        <li>
+            <?php
+            if (is_connected()) {
+                echo '<a href="../../../techsolution/admin/admin.php">Administrateur</a>';
+            } else {
+                echo '<a href="../../../techsolution/login/login.php">Connexion</a>';
+            }
+            ?>
+        </li>
+
     </ul>
 </header>

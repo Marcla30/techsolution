@@ -39,7 +39,7 @@ if (isset($_GET['stop'])) {
 
 <div class="formcontainer">
     <form action="login.php" method="post">
-        <input type="username" name="username" placeholder="Adresse mail"><br>
+        <input type="username" name="username" placeholder="Nom d'utilisateur"><br>
         <input type="password" name="password" placeholder="Mot de passe"><br>
         <input type="submit" value="Se connecter"><br>
         <?="<a>".$message."</a>"?>

@@ -4,6 +4,15 @@ session_start();
 if (isset($_SESSION['username'])) {
     $nom = $_SESSION['username'];
 }
+
+$host = "localhost";
+$username = "root";
+$password = "";
+$dbname = "techsolution";
+
+global $conn;
+$conn = new PDO('mysql:host=' . $host . ';dbname=' . $dbname, $username, $password);
+
 function is_connected(): bool
 {
     return isset($_SESSION['connexion']) && $_SESSION['connexion'] == 1;
@@ -45,7 +54,7 @@ function doUserExist($username, $password): bool {
     }
 }
 
-function updateArticle($id, $titre, $tag, $content): bool {
+function updateArticle($id, $titre, $img, $tag, $content): bool {
     $host = "localhost";
     $dbusername = "root";
     $dbpassword = "";
@@ -55,10 +64,11 @@ function updateArticle($id, $titre, $tag, $content): bool {
         $conn = new PDO('mysql:host=' . $host . ';dbname=' . $dbname, $dbusername, $dbpassword);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = "UPDATE articles SET titreArticle = :titre, tagArticle = :tag, contentArticle = :content WHERE idArticle = :id";
+        $sql = "UPDATE articles SET titreArticle = :titre, imgArticle = :img, tagArticle = :tag, contentArticle = :content WHERE idArticle = :id";
 
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':titre', $titre);
+        $stmt->bindParam(':img', $img);
         $stmt->bindParam(':tag', $tag);
         $stmt->bindParam(':content', $content);
         $stmt->bindParam(':id', $id);
@@ -71,5 +81,88 @@ function updateArticle($id, $titre, $tag, $content): bool {
     }
 }
 
+function deleteArticle($id): bool {
+    $host = "localhost";
+    $dbusername = "root";
+    $dbpassword = "";
+    $dbname = "techsolution";
+
+    try {
+        $conn = new PDO('mysql:host=' . $host . ';dbname=' . $dbname, $dbusername, $dbpassword);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = "DELETE FROM articles WHERE idArticle = :id";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':id', $id);
+
+        return $stmt->execute();
+
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+        return false;
+    }
+}
+
+function createArticle($titre, $img, $tag, $content): bool {
+    $host = "localhost";
+    $dbusername = "root";
+    $dbpassword = "";
+    $dbname = "techsolution";
+
+    try {
+        $conn = new PDO('mysql:host=' . $host . ';dbname=' . $dbname, $dbusername, $dbpassword);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = "INSERT INTO `articles` (`idArticle`, `titreArticle`, `imgArticle`, `tagArticle`, `contentArticle`, `fkuserId`, `fkcodeTag`)
+VALUES (NULL, :titre, :img, :tag, :content, :userid, :codetag)";
+
+        $userid = 1;
+        $codetag = 1;
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':titre', $titre);
+        $stmt->bindParam(':img', $img);
+        $stmt->bindParam(':tag', $tag);
+        $stmt->bindParam(':content', $content);
+        $stmt->bindParam(':userid', $userid);
+        $stmt->bindParam(':codetag', $codetag);
+
+        return $stmt->execute();
+
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+        return false;
+    }
+}
+
+function getArticle($id) {
+    global $conn;
+
+    $sql = "SELECT * FROM articles WHERE idArticle = :idArticle";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':idArticle', $id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    // Récupérer l'article sous forme de tableau associatif
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+function getXarticle($amount) {
+    try {
+        global $conn;
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT * FROM articles ORDER BY idArticle DESC LIMIT $amount";
+        $stmt = $conn->query($sql);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    } catch (PDOException $e) {
+        // Handle connection errors
+        echo "Error: " . $e->getMessage();
+        return false;
+    }
+
+}
 
 
+//INSERT INTO `articles` (`idArticle`, `titreArticle`, `imgArticle`, `tagArticle`, `contentArticle`, `fkuserId`, `fkcodeTag`) VALUES (NULL, 'zeeez', 'aergaer', 'aerger', 'eargaerg', '1', '1');
