@@ -37,7 +37,6 @@ header ul li a:hover {
     border-radius: 5px;
 }
 
-/* Style du sous-menu */
 .sous-menu {
     position: absolute;
     top: 100%;
@@ -112,7 +111,7 @@ h1 {
     margin: 20px 0;
 }
 
-/* Style pour les articles */
+
 .article {
     background-color: #444;
     padding: 20px;
@@ -142,7 +141,7 @@ h1 {
     background-color: #444444;
 
 }
-/* Style pour la section services */
+
 .services {
     background-color: #333;
     padding: 20px;

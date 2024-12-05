@@ -45,6 +45,12 @@ if (isset($_GET['delete'])) {
         exit();
     }
 }
+if (isset($_GET['rmcontact'])) {
+    if (removeContact($_GET['rmcontact'])) {
+        header("Location: ../../techsolution/admin/admin.php");
+        exit();
+    }
+}
 
 ?>
 <h1>Pannel administratif</h1>
@@ -113,16 +119,37 @@ foreach ($row as $article) {
 
 
 <a href="adminArticle/adminarticles.php"><button>Voir tout</button></a>
-<h2>Derniers message reçu</h2>
-<hr>
-<div class="messsage">
-  <img src="img/article.png" alt="template_message">
+<h1>Derniers message reçu</h1>
+
+
+<?php
+$contacts = getContact();
+foreach ($contacts as $contact) {
+    $id = $contact['idContact'];
+    echo '<div class="article">';
+    echo '<h5>' . "Nom: " . htmlspecialchars($contact['nomContact']) . '</h5>';
+    echo '<h5>' . "Prénom: " . htmlspecialchars($contact['prenomContact']) . '</h5>';
+    echo '<h5>' . "Adresse mail: " . htmlspecialchars($contact['emailContact']) . '</h5>';
+    echo '<h5>' . "Message: " . htmlspecialchars($contact['contentContact']) . '</h5>';
+    echo '<div class="buttoncontainer">';
+    echo '<button onclick="window.location.href=\'mailto:' . htmlspecialchars($contact['emailContact']) . '\'">Contacter</button>';
+    echo '<button onclick="window.location.href=\'../../techsolution/admin/admin.php?rmcontact=' .
+        htmlspecialchars($contact['idMessage']) .
+        '\'">Supprimer</button>';
+    echo '</div>';
+    echo '</div>';
+}
+?>
+
+
+
+<div class="article">
   <h6>Nom</h6>
   <h6>Prénom</h6>
   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci blanditiis,
   dicta dolores doloribus ex explicabo necessitatibus obcaecati odio officiis
   praesentium quia, rerum sit tenetur. Doloremque ea maiores numquam praesentium repellat.
-  <hr>
+
   <div>
     <input type="checkbox" id="message_lu" name="message_lu" checked />
     <label for="message_lu">Marquer comme lu</label>

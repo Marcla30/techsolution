@@ -5,6 +5,21 @@ if (isset($_SESSION['username'])) {
     $nom = $_SESSION['username'];
 }
 
+//function conn() {
+//    $host = "localhost";
+//    $username = "root";
+//    $password = "";
+//    $dbname = "techsolution";
+//    if (defined("conn")) {
+//        return conn;
+//    } else {
+//        $conn = new PDO('mysql:host=' . $host . ';dbname=' . $dbname, $username, $password);
+//        define ("conn", $conn);
+//    }
+//    return $conn;
+//
+//}
+
 $host = "localhost";
 $username = "root";
 $password = "";
@@ -164,5 +179,69 @@ function getXarticle($amount) {
 
 }
 
+function pushContactForm($nom, $prenom, $email, $sujet) {
+    try {
+        global $conn;
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-//INSERT INTO `articles` (`idArticle`, `titreArticle`, `imgArticle`, `tagArticle`, `contentArticle`, `fkuserId`, `fkcodeTag`) VALUES (NULL, 'zeeez', 'aergaer', 'aerger', 'eargaerg', '1', '1');
+        $sql = "INSERT INTO `formContact` (`idMessage`, `nomContact`, `prenomContact`, `emailContact`, `contentContact`)
+VALUES (NULL, :nom, :prenom, :email, :sujet)";
+
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':nom', $nom);
+        $stmt->bindParam(':prenom', $prenom);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':sujet', $sujet);
+
+
+        return $stmt->execute();
+
+    } catch (PDOException $e) {
+        // Handle connection errors
+        echo "Error: " . $e->getMessage();
+        return false;
+    }
+
+}
+
+function getContact() {
+
+    try {
+        global $conn;
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = "SELECT * FROM formContact ORDER BY idMessage DESC";
+
+        $stmt = $conn->query($sql);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    } catch (PDOException $e) {
+        // Handle connection errors
+        echo "Error: " . $e->getMessage();
+        return false;
+    }
+
+}
+
+function removeContact($id) {
+
+    try {
+        global $conn;
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = "DELETE FROM formContact WHERE idMessage = :id";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':id', $id);
+
+        return $stmt->execute();
+
+    } catch (PDOException $e) {
+        // Handle connection errors
+        echo "Error: " . $e->getMessage();
+        return false;
+    }
+
+}

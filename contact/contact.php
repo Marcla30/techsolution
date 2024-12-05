@@ -1,6 +1,10 @@
 <?php
 $title = "- Contact";
 include "../views/layout/header.php";
+
+if (isset($_POST["sujet"])) {
+    pushContactForm($_POST['lname'], $_POST['fname'], $_POST['email'], $_POST['sujet']);
+}
 ?>
 
 <head>
@@ -14,11 +18,13 @@ include "../views/layout/header.php";
 </div>
 <h1>Formulaire de contact</h1>
 <div class="formcontainer">
-    <form action="action_page.php">
+    <form action="contact.php" method="POST">
 
-        <input type="text" id="lname" name="lastname" placeholder="Votre nom">
+        <input type="text" id="lname" name="lname" placeholder="Votre nom">
 
-        <input type="text" id="fname" name="firstname" placeholder="Votre prénom">
+        <input type="text" id="fname" name="fname" placeholder="Votre prénom">
+
+        <input type="email" id="email" name="email" placeholder="Votre email">
 
         <textarea type="text" id="subject" name="sujet" placeholder="Votre demande..."></textarea>
 
