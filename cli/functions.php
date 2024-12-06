@@ -69,6 +69,28 @@ function doUserExist($username, $password): bool {
     }
 }
 
+function updateUser($username, $oldPassword, $newPassword) {
+    $host = "localhost";
+    $dbusername = "root";
+    $dbpassword = "";
+    $dbname = "techsolution";
+    global $conn;
+    $conn = new PDO('mysql:host=' . $host . ';dbname=' . $dbname, $dbusername, $dbpassword);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = "UPDATE utilisateurs SET password = :newpassword WHERE username = :username";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':newpassword', $newPassword);
+    $stmt->bindParam(':username', $username);
+
+    if (doUserExist($username, $oldPassword)) {
+        $stmt->execute();
+    } else {
+        return false;
+    }
+
+    return true;
+}
+
 function updateArticle($id, $titre, $img, $tag, $content): bool {
     $host = "localhost";
     $dbusername = "root";
@@ -158,8 +180,17 @@ function getArticle($id) {
     $stmt->bindParam(':idArticle', $id, PDO::PARAM_INT);
     $stmt->execute();
 
-    // Récupérer l'article sous forme de tableau associatif
     return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+function getAllArticle() {
+    global $conn;
+
+    $sql = "SELECT * FROM articles";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function getXarticle($amount) {

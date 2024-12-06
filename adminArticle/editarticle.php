@@ -49,7 +49,7 @@ try {
 
 
 <?php
-var_dump($_GET['edit']);
+//var_dump($_GET['edit']);
 if (isset($_GET['edit']) && $_GET['edit'] != "")  {
     $id = intval($_GET['edit']);
     $article = getArticle($id);
@@ -87,7 +87,7 @@ if (isset($_GET['edit']) && $_GET['edit'] != "")  {
 }
 
 if (isset($_POST['editMode']) && $_POST['editMode'] == "1") {
-    var_dump($_POST);
+//    var_dump($_POST);
     if (isset($_POST['idArticle'], $_POST['titreArticle'],$_POST['imgArticle'], $_POST['tagArticle'], $_POST['contentArticle'])) {
         $id = intval($_POST['idArticle']);
         $titre = $_POST['titreArticle'];
@@ -110,7 +110,7 @@ if (isset($_POST['editMode']) && $_POST['editMode'] == "1") {
         $tag = $_POST['tagArticle'];
         $content = $_POST['contentArticle'];
 
-        var_dump($content);
+//        var_dump($content);
         // Appeler la fonction pour mettre à jour l'article
         if (createArticle($id, $titre, $tag, $content)) {
             header("Location: ../../techsolution/admin/admin.php");

@@ -142,6 +142,7 @@ h1 {
 
 }
 
+
 .services {
     background-color: #333;
     padding: 20px;
@@ -181,6 +182,10 @@ button {
     margin: 0 10px; /* Ajoute un espacement horizontal entre les boutons */
     padding: 10px 20px; /* Taille des boutons */
     border-radius: 5px; /* Coins arrondis pour un design moderne */
+}
+
+.alert {
+    background: rgba(218, 14, 14, 0.94);
 }
 
 button:hover {

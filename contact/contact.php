@@ -20,13 +20,13 @@ if (isset($_POST["sujet"])) {
 <div class="formcontainer">
     <form action="contact.php" method="POST">
 
-        <input type="text" id="lname" name="lname" placeholder="Votre nom">
+        <input type="text" id="lname" name="lname" placeholder="Votre nom / Société" required>
 
         <input type="text" id="fname" name="fname" placeholder="Votre prénom">
 
-        <input type="email" id="email" name="email" placeholder="Votre email">
+        <input type="email" id="email" name="email" placeholder="Votre email" required>
 
-        <textarea type="text" id="subject" name="sujet" placeholder="Votre demande..."></textarea>
+        <textarea type="text" id="subject" name="sujet" placeholder="Votre demande..." required></textarea>
 
         <input type="submit" value="Envoyer">
 

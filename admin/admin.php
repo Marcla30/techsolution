@@ -58,8 +58,8 @@ if (isset($_GET['rmcontact'])) {
     <h5>Connecté en tant que: <?=$nom?></h5>
     <h5>Dernière connexion le: $date</h5>
         <div class="buttoncontainer">
-            <button>Profil</button>
-            <button onclick="window.location.href='../../techsolution/login/login.php?stop=1'">Déconnexion</button>
+            <button onclick="window.location.href='../../techsolution/admin/profil.php'">Profil</button>
+            <button class="alert" onclick="window.location.href='../../techsolution/login/login.php?stop=1'">Déconnexion</button>
             <!--<a href="../../techsolution/login/login.php?stop=1"">-->
             <!--    <button>Déconnexion</button>-->
             <!--</a>-->
@@ -76,15 +76,17 @@ foreach ($row as $article) {
     echo '<div class="img-container">';
     echo '<img src="' . $article['imgArticle'] . '"img/article.png" alt="template_article">';
     echo '</div>';
-    echo '<h5><a>' . htmlspecialchars($article['titreArticle']) . '</a></h5>';
+    echo '<h5><a href="../../techsolution/actualites/article.php?id=' . htmlspecialchars($article['idArticle']) . '">' . htmlspecialchars($article['titreArticle']) . '</a></h5>';
     echo '<h5><a href="tag1.html">' . htmlspecialchars($article['tagArticle']) . '</a></h5>';
     echo htmlspecialchars(substr($article['contentArticle'], 0, 200)).'...';
     echo '<div class="buttoncontainer">';
-    echo '<button>Afficher</button>';
+    echo '<button onclick="window.location.href=\'../../techsolution/actualites/article.php?id=' .
+        htmlspecialchars($article['idArticle']) .
+        '\'">Afficher</button>';
     echo '<button onclick="window.location.href=\'../../techsolution/adminArticle/editarticle.php?edit=' .
         htmlspecialchars($article['idArticle']) .
         '\'">Modifier</button>';
-    echo '<button onclick="window.location.href=\'../../techsolution/admin/admin.php?delete=' .
+    echo '<button class="alert" onclick="window.location.href=\'../../techsolution/admin/admin.php?delete=' .
         htmlspecialchars($article['idArticle']) .
         '\'">Supprimer</button>';
     echo '</div>';
@@ -118,7 +120,7 @@ foreach ($row as $article) {
 <!--</div>-->
 
 
-<a href="adminArticle/adminarticles.php"><button>Voir tout</button></a>
+<a href="../../techsolution/adminArticle/adminarticles.php"><button>Voir tout</button></a>
 <h1>Derniers message reçu</h1>
 
 
@@ -133,7 +135,7 @@ foreach ($contacts as $contact) {
     echo '<h5>' . "Message: " . htmlspecialchars($contact['contentContact']) . '</h5>';
     echo '<div class="buttoncontainer">';
     echo '<button onclick="window.location.href=\'mailto:' . htmlspecialchars($contact['emailContact']) . '\'">Contacter</button>';
-    echo '<button onclick="window.location.href=\'../../techsolution/admin/admin.php?rmcontact=' .
+    echo '<button class="alert" onclick="window.location.href=\'../../techsolution/admin/admin.php?rmcontact=' .
         htmlspecialchars($contact['idMessage']) .
         '\'">Supprimer</button>';
     echo '</div>';
