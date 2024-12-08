@@ -61,7 +61,16 @@ if (isset($_GET['edit']) && $_GET['edit'] != "")  {
     echo '<label for="imgArticle">Image de l\'article :</label>';
     echo '<input type="text" id="imgArticle" name="imgArticle" placeholder="Image de l\'article" value="' . htmlspecialchars($article['imgArticle']) . '" required>';
     echo '<label for="tagArticle">Tag de l\'article :</label>';
-    echo '<input type="text" id="tagArticle" name="tagArticle" placeholder="Tag de l\'article" value="' . htmlspecialchars($article['tagArticle']) . '" required>';
+    echo '<select name="tagArticle" id="tagArticle" required>';
+    echo '<option value=""></option>';
+    $tags = getTag();
+    foreach ($tags as $tag) {
+        $selected = ($article['tagArticle'] === $tag['libeleTag']) ? 'selected' : '';
+        echo '<option value="' . htmlspecialchars($tag['libeleTag']) . '" ' . $selected . '>';
+        echo htmlspecialchars($tag['libeleTag']);
+        echo '</option>';
+    }
+    echo '</select>';
     echo '<label for="contentArticle">Contenu de l\'article :</label>';
     echo '<textarea id="contentArticle" name="contentArticle" rows="20" placeholder="Contenu de l\'article..." required>' . htmlspecialchars($article['contentArticle']) . '</textarea>';
     echo '<input type="hidden" name="idArticle" value="' . htmlspecialchars($article['idArticle']) . '">';
@@ -77,7 +86,16 @@ if (isset($_GET['edit']) && $_GET['edit'] != "")  {
     echo '<label for="imgArticle">Image de l\'article :</label>';
     echo '<input type="text" id="imgArticle" name="imgArticle" placeholder="Image de l\'article" required>';
     echo '<label for="tagArticle">Tag de l\'article :</label>';
-    echo '<input type="text" id="tagArticle" name="tagArticle" placeholder="Tag de l\'article" required>';
+    echo '<option value=""></option>';
+    echo '<select name="tagArticle" id="tagArticle">';
+    $tags = getTag();
+    foreach ($tags as $tag) {
+        echo '<option value="' . htmlspecialchars($tag['libeleTag']) . '">';
+        echo htmlspecialchars($tag['libeleTag']);
+        echo '</option>';
+    }
+    echo '</select>';
+//    echo '<input type="text" id="tagArticle" name="tagArticle" placeholder="Tag de l\'article" required>';
     echo '<label for="contentArticle">Contenu de l\'article :</label>';
     echo '<textarea id="contentArticle" name="contentArticle" rows="20" placeholder="Contenu de l\'article..." required></textarea>';
     echo '<input type="hidden" name="idArticle">';
@@ -95,7 +113,7 @@ if (isset($_POST['editMode']) && $_POST['editMode'] == "1") {
         $tag = $_POST['tagArticle'];
         $content = $_POST['contentArticle'];
 
-        var_dump($content);
+//        var_dump($content);
         if (updateArticle($id, $titre, $img, $tag, $content)) {
             header("Location: ../../techsolution/admin/admin.php");
             exit();

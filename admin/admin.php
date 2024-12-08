@@ -9,7 +9,6 @@ if (!is_connected()) {
 }
 
 
-
 $host = "localhost";
 $username = "root";
 $password = "";
@@ -74,10 +73,10 @@ if (isset($_GET['rmcontact'])) {
 foreach ($row as $article) {
     echo '<div class="article">';
     echo '<div class="img-container">';
-    echo '<img src="' . $article['imgArticle'] . '"img/article.png" alt="template_article">';
+    echo '<img src="' . $article['imgArticle'] . '" onerror="this.src=\'../../techsolution/img/main-illustration.jpg\'">';
     echo '</div>';
     echo '<h5><a href="../../techsolution/actualites/article.php?id=' . htmlspecialchars($article['idArticle']) . '">' . htmlspecialchars($article['titreArticle']) . '</a></h5>';
-    echo '<h5><a href="tag1.html">' . htmlspecialchars($article['tagArticle']) . '</a></h5>';
+    echo '<h5><a>' . htmlspecialchars($article['tagArticle']) . '</a></h5>';
     echo htmlspecialchars(substr($article['contentArticle'], 0, 200)).'...';
     echo '<div class="buttoncontainer">';
     echo '<button onclick="window.location.href=\'../../techsolution/actualites/article.php?id=' .

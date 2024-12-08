@@ -2,9 +2,9 @@
 $title = "- Contact";
 include "../views/layout/header.php";
 
-if (isset($_POST["sujet"])) {
+if (isset($_POST["sujet"]) && isset($_POST["email"])) {
     pushContactForm($_POST['lname'], $_POST['fname'], $_POST['email'], $_POST['sujet']);
-}
+    echo '<script>alert("Votre message a bien été envoyé")</script>';}
 ?>
 
 <head>

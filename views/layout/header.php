@@ -14,9 +14,9 @@ require_once "../cli/functions.php";
         <li><a href="../../../techsolution/accueil/index.php">Accueil</a></li>
         <li><a href="../../../techsolution/actualites/actualites.php">Actualités</a>
             <ul class="sous-menu">
-                <li><a href="tag1.html">Tag 1</a></li>
-                <li><a href="#">Tag 2</a></li>
-                <li><a href="#">Tag 3</a></li>
+                <li><a href="../../../techsolution/actualites/dev.php">Développement</a></li>
+                <li><a href="../../../techsolution/actualites/design.php">Design</a></li>
+                <li><a href="../../../techsolution/actualites/infra.php">Infrastructure</a></li>
             </ul>
         </li>
         <li><a href="../../../techsolution/contact/contact.php">Contact</a></li>

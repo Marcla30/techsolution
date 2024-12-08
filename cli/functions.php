@@ -172,6 +172,26 @@ VALUES (NULL, :titre, :img, :tag, :content, :userid, :codetag)";
     }
 }
 
+function getTag() {
+    $host = "localhost";
+    $dbusername = "root";
+    $dbpassword = "";
+    $dbname = "techsolution";
+    try {
+        $conn = new PDO('mysql:host=' . $host . ';dbname=' . $dbname, $dbusername, $dbpassword);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = "SELECT * FROM tags";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+        return false;
+    }
+}
+
 function getArticle($id) {
     global $conn;
 
@@ -275,4 +295,15 @@ function removeContact($id) {
         return false;
     }
 
+}
+
+function getArticleByTag($tag) {
+    global $conn;
+
+    $sql = "SELECT * FROM articles WHERE tagArticle = :tag";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':tag', $tag, PDO::PARAM_STR);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
