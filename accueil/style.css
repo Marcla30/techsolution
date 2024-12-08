@@ -36,7 +36,7 @@ header ul li a:hover {
     border-radius: 5px;
 }
 
-/* Style du sous-menu */
+
 .sous-menu {
     position: absolute;
     top: 100%;
@@ -102,18 +102,16 @@ img {
     height: auto;
     display: block;
     margin: 20px auto;
-    border-radius: 8px;  /* Coins légèrement arrondis */
+    border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Amélioration du titre */
 h1 {
     text-align: center;
     color: #e341ef;
     margin: 20px 0;
 }
 
-/* Style pour les articles */
 .article {
     background-color: #444;
     padding: 20px;
@@ -143,7 +141,7 @@ h1 {
     background-color: #444444;
 
 }
-/* Style pour la section services */
+
 .services {
     background-color: #333;
     padding: 20px;
@@ -165,7 +163,6 @@ h1 {
     color: #ccc;
 }
 
-/* Style du lien de navigation active */
 header ul li a.active {
     background-color: #e341ef;
     color: #333;
