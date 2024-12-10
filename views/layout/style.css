@@ -54,13 +54,7 @@ header ul li a:hover {
     margin: 0;
 }
 
-.sous-menu li a {
-    padding: 10px 15px;
-    display: block;
-    color: white;
-    text-decoration: none;
-    white-space: nowrap;
-}
+
 
 .sous-menu li a:hover {
     background-color: #666;
@@ -93,7 +87,6 @@ h1::before {
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
 
 img {
@@ -142,7 +135,6 @@ h1 {
 
 }
 
-
 .services {
     background-color: #333;
     padding: 20px;
@@ -164,11 +156,11 @@ h1 {
     color: #ccc;
 }
 
-/* Style du lien de navigation active */
-header ul li a.active {
-    background-color: #e341ef;
-    color: #333;
-    border-radius: 5px;
+.formbutton,
+.hiddena,
+a{
+    background: none;
+
 }
 
 button {
@@ -178,10 +170,10 @@ button {
     cursor: pointer;
     font-weight: bold;
     transition: background 0.3s ease;
-    flex: 1; /* Les boutons prennent une proportion égale */
-    margin: 0 10px; /* Ajoute un espacement horizontal entre les boutons */
-    padding: 10px 20px; /* Taille des boutons */
-    border-radius: 5px; /* Coins arrondis pour un design moderne */
+    margin: 0 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+
 }
 
 .alert {
@@ -196,14 +188,12 @@ button:hover {
 .buttoncontainer {
     background-color: #444;
     padding: 20px;
-    margin: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-direction: row;
 }
 
 .img-container {

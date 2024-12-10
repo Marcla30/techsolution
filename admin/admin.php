@@ -55,18 +55,17 @@ if (isset($_GET['rmcontact'])) {
 <h1>Pannel administratif</h1>
 <div class="article">
     <h5>Connecté en tant que: <?=$nom?></h5>
-    <h5>Dernière connexion le: $date</h5>
+<!--    <h5>Dernière connexion le: $date</h5>-->
         <div class="buttoncontainer">
-            <button onclick="window.location.href='../../techsolution/admin/profil.php'">Profil</button>
-            <button class="alert" onclick="window.location.href='../../techsolution/login/login.php?stop=1'">Déconnexion</button>
-            <!--<a href="../../techsolution/login/login.php?stop=1"">-->
-            <!--    <button>Déconnexion</button>-->
-            <!--</a>-->
+            <a class="hiddena" href="../../techsolution/admin/profil.php"><button>Profil</button></a>
+            <a class="hiddena" href="../../techsolution/login/login.php?stop=1"">
+                <button class="alert">Déconnexion</button>
+            </a>
         </div>
 </div>
 <h1>Article récent</h1>
 
-<button onclick="window.location.href='../../techsolution/adminArticle/editarticle.php?edit='">Nouvel article</button>
+<a class="hiddena" href="../../techsolution/adminArticle/editarticle.php?edit="><button>Nouvel article</button></a>
 
 <?php
 // Boucle pour afficher les articles
@@ -79,15 +78,19 @@ foreach ($row as $article) {
     echo '<h5><a>' . htmlspecialchars($article['tagArticle']) . '</a></h5>';
     echo htmlspecialchars(substr($article['contentArticle'], 0, 200)).'...';
     echo '<div class="buttoncontainer">';
-    echo '<button onclick="window.location.href=\'../../techsolution/actualites/article.php?id=' .
+//    echo '<button onclick="window.location.href=\'../../techsolution/actualites/article.php?id=' .
+//        htmlspecialchars($article['idArticle']) .
+//        '\'">Afficher</button>';
+    echo '<a class="hiddena" href="../../techsolution/actualites/article.php?id=' .
         htmlspecialchars($article['idArticle']) .
-        '\'">Afficher</button>';
-    echo '<button onclick="window.location.href=\'../../techsolution/adminArticle/editarticle.php?edit=' .
+        '"><button>Afficher</button></a>';
+
+    echo '<a class="hiddena" href="../../techsolution/adminArticle/editarticle.php?edit=' .
         htmlspecialchars($article['idArticle']) .
-        '\'">Modifier</button>';
-    echo '<button class="alert" onclick="window.location.href=\'../../techsolution/admin/admin.php?delete=' .
+        '"><button>Modifier</button></a>';
+    echo '<a class="hiddena" href="../../techsolution/admin/admin.php?delete=' .
         htmlspecialchars($article['idArticle']) .
-        '\'">Supprimer</button>';
+        '"><button class="alert">Supprimer</button></a>';
     echo '</div>';
     echo '</div>';
 }
@@ -134,9 +137,14 @@ foreach ($contacts as $contact) {
     echo '<h5>' . "Message: " . htmlspecialchars($contact['contentContact']) . '</h5>';
     echo '<div class="buttoncontainer">';
     echo '<button onclick="window.location.href=\'mailto:' . htmlspecialchars($contact['emailContact']) . '\'">Contacter</button>';
-    echo '<button class="alert" onclick="window.location.href=\'../../techsolution/admin/admin.php?rmcontact=' .
-        htmlspecialchars($contact['idMessage']) .
-        '\'">Supprimer</button>';
+//    echo '<button class="alert" onclick="window.location.href=\'../../techsolution/admin/admin.php?rmcontact=' .
+//        htmlspecialchars($contact['idMessage']) .
+//        '\'">Supprimer</button>';
+    echo '<form class="formbutton" method="GET">';
+    echo '<input type="hidden" name="rmcontact" value="' . htmlspecialchars($contact['idMessage']) . '">';
+    echo '<button class="alert" type="submit">Supprimer</button>';
+    echo '</form>';
+
     echo '</div>';
     echo '</div>';
 }
@@ -144,19 +152,19 @@ foreach ($contacts as $contact) {
 
 
 
-<div class="article">
-  <h6>Nom</h6>
-  <h6>Prénom</h6>
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci blanditiis,
-  dicta dolores doloribus ex explicabo necessitatibus obcaecati odio officiis
-  praesentium quia, rerum sit tenetur. Doloremque ea maiores numquam praesentium repellat.
-
-  <div>
-    <input type="checkbox" id="message_lu" name="message_lu" checked />
-    <label for="message_lu">Marquer comme lu</label>
-  </div>
-  <button>Supprimer</button>
-</div>
+<!--<div class="article">-->
+<!--  <h6>Nom</h6>-->
+<!--  <h6>Prénom</h6>-->
+<!--  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci blanditiis,-->
+<!--  dicta dolores doloribus ex explicabo necessitatibus obcaecati odio officiis-->
+<!--  praesentium quia, rerum sit tenetur. Doloremque ea maiores numquam praesentium repellat.-->
+<!---->
+<!--  <div>-->
+<!--    <input type="checkbox" id="message_lu" name="message_lu" checked />-->
+<!--    <label for="message_lu">Marquer comme lu</label>-->
+<!--  </div>-->
+<!--  <button>Supprimer</button>-->
+<!--</div>-->
 
 </body>
 </html>

@@ -56,7 +56,7 @@ if (isset($_GET['rmcontact'])) {
 <h1>Pannel administratif</h1>
 <div class="article">
     <h5>Connecté en tant que: <?=$nom?></h5>
-    <h5>Dernière connexion le: $date</h5>
+<!--    <h5>Dernière connexion le: $date</h5>-->
     <div class="buttoncontainer">
         <button onclick="window.location.href='../../techsolution/admin/admin.php'">Retour à l'administration</button>
         <button class="alert" onclick="window.location.href='../../techsolution/login/login.php?stop=1'">Déconnexion</button>

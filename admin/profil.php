@@ -16,11 +16,8 @@ if (!is_connected()) {
 <div class="article">
     <h5>Connecté en tant que: <?=$nom?></h5>
     <div class="buttoncontainer">
-        <button onclick="window.location.href='../../techsolution/admin/admin.php'">Retour à l'administration</button>
-        <button class="alert" onclick="window.location.href='../../techsolution/login/login.php?stop=1'">Déconnexion</button>
-        <!--<a href="../../techsolution/login/login.php?stop=1"">-->
-        <!--    <button>Déconnexion</button>-->
-        <!--</a>-->
+        <a class="hiddena" href="../../techsolution/admin/admin.php"><button>Retour à l'administration</button></a>
+        <a class="hiddena" href="../../techsolution/login/login.php?stop=1"><button class="alert">Déconnexion</button></a>
     </div>
 </div>
 
