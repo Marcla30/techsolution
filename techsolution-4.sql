@@ -20,6 +20,9 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `techsolution`
 --
+DROP DATABASE IF EXISTS techsolution;
+CREATE DATABASE techsolution;
+USE techsolution;
 
 -- --------------------------------------------------------
 
