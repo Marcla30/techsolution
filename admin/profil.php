@@ -1,7 +1,8 @@
 <?php
 $title = "- Profil";
-include "../views/layout/header.php";
-require_once "../cli/functions.php";
+$p= dirname(__DIR__) . DIRECTORY_SEPARATOR . 'cli' . DIRECTORY_SEPARATOR . 'functions.php';
+require_once $p;
+include HEADERPATH;
 
 if (!is_connected()) {
     header("Location: ../../techsolution/login/login.php");
@@ -49,8 +50,10 @@ echo '<input type="password" id="newpasswordconfirm" name="newpasswordconfirm" p
 echo '<input type="submit" value="Modifier le mot de passe">';
 echo '<br>';
 echo "<a>". $message."</a>";
+echo "<h5>Si vous souhaitez supprimer votre compte, merci nous adresser votre demande par mail à contact@techsolutions.fr</h5>";
 echo '</form>';
 echo '</div>';
+
 
 
 

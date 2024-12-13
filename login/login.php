@@ -1,7 +1,9 @@
 <?php
 $title = "- Connexion";
-include "../views/layout/header.php";
-require_once "../cli/functions.php";
+//include "../views/layout/header.php";
+include dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . 'header.php';;
+$p= dirname(__DIR__) . DIRECTORY_SEPARATOR . 'cli' . DIRECTORY_SEPARATOR . 'functions.php';
+require_once $p;
 
 $nom = $_POST['username'];
 $mdp = $_POST['password'];

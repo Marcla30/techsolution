@@ -5,6 +5,15 @@ if (isset($_SESSION['username'])) {
     $nom = $_SESSION['username'];
 }
 
+define('PATH', dirname(__DIR__));
+const ADMINPATH = PATH . DIRECTORY_SEPARATOR . 'admin';
+const ACTUPATH =  PATH . DIRECTORY_SEPARATOR . 'actualites';
+const CONTACTPATH =  PATH . DIRECTORY_SEPARATOR . 'contact';
+
+const HEADERPATH = PATH . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . 'header.php';
+
+
+
 //function conn() {
 //    $host = "localhost";
 //    $username = "root";

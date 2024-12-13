@@ -1,6 +1,8 @@
 <?php
 $title = "- Actualités";
-include "../views/layout/header.php";
+$p= dirname(__DIR__) . DIRECTORY_SEPARATOR . 'cli' . DIRECTORY_SEPARATOR . 'functions.php';
+require_once $p;
+include HEADERPATH;
 ?>
 <body>
 

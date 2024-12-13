@@ -1,7 +1,8 @@
 <?php
 $title = "- Admin";
-include "../views/layout/header.php";
-require_once "../cli/functions.php";
+$p= dirname(__DIR__) . DIRECTORY_SEPARATOR . 'cli' . DIRECTORY_SEPARATOR . 'functions.php';
+require_once $p;
+include HEADERPATH;
 if (!is_connected()) {
     header("Location: ../../techsolution/login/login.php");
     exit();

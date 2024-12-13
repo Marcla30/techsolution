@@ -1,6 +1,10 @@
 <?php
 $title = "";
-include "../views/layout/header.php";
+
+//include "../views/layout/header.php";
+$p= dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . 'header.php';
+include $p;
+
 ?>
 <h1>TechSolution</h1>
 <div class ="illustration">
